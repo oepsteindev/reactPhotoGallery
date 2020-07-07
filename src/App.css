@@ -122,6 +122,31 @@ input[type='text'] {
   padding-bottom: 10px;
 }
 
+.links > a {
+    color: #ccc;
+    padding: 0 25px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.footer {
+    position: sticky;
+    text-align: center;
+    top: 0;
+    left: 0;
+    width: 97%;
+    height: 60px; /* Set the fixed height of the footer here */
+    line-height: 60px; /* Vertically center the text there */
+    /* background-color: #393f4d; */
+    margin-top:100px;
+    margin-bottom :10px;
+    margin:auto;
+
+  }
+
 @media (max-width: 800px) {
   .cards {
     grid-template-columns: repeat(2, 1fr);
