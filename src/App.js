@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import axios from 'axios'
 import GalleryGrid from './components/gallery/GalleryGrid'
 import Contactmefooter from './components/vue/Contactmefooter'
+import Todo from './components/react/todo'
 import Search from './components/ui/Search'
 import './App.css'
 
@@ -32,6 +33,7 @@ const App = () => {
   return (
       <div className='container'>
           <Contactmefooter />
+          <Todo/>
           <Search getQuery={(q) => setQuery(q)} />
       <GalleryGrid isLoading={isLoading} items={items} />
     </div>

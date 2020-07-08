@@ -1,6 +1,7 @@
 import React from 'react'
 import GalleryItem from './GalleryItem'
 import Spinner from '../ui/Spinner'
+import '../../App.css'
 
 const GalleryGrid = ({ items, isLoading }) => {
   return isLoading ? (
