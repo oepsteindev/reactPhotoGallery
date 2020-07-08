@@ -1,128 +1,129 @@
 * {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 html,
 body {
-  background: #000 url('img/bg.jpg') no-repeat center center/cover;
-  height: 100vh;
-  color: #fff;
-  font-family: Arial, Helvetica, sans-serif;
+    background: #000 url('img/bg.jpg') no-repeat center center/cover;
+    height: 100vh;
+    color: #fff;
+    font-family: Arial, Helvetica, sans-serif;
 }
 
 a {
-  text-decoration: none;
+    text-decoration: none;
 }
 
 .container {
-  max-width: 1100px;
-  margin: auto;
-  padding: 0 20px;
+    max-width: 1100px;
+    margin: auto;
+    padding: 0 20px;
 }
 
 .btn {
-  display: inline-block;
-  color: #fff;
-  background-color: #3fb573;
-  font-size: 1em;
-  text-align: center;
-  padding: 10px 15px;
-  border: 0;
-  margin: 10px 0;
+    display: inline-block;
+    color: #fff;
+    background-color: #3fb573;
+    font-size: 1em;
+    text-align: center;
+    padding: 10px 15px;
+    border: 0;
+    margin: 10px 0;
 }
 
 header {
-  height: 200px;
+    height: 200px;
 }
 
 header img {
-  width: 200px;
+    width: 200px;
 }
 
 .center {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .search {
-  margin-top: 10px;;
-  height: 75px;
+    margin-top: 10px;
+    ;
+    height: 75px;
 }
 
 input[type='text'] {
-  display: block;
-  padding: 10px;
-  font-size: 12px;
-  border: 0;
-  border-radius: 5px;
-  width: 50%;
-  margin: auto;
+    display: block;
+    padding: 10px;
+    font-size: 12px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    margin: auto;
 }
 
 .cards {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 1rem;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
 }
 
 .card {
-  cursor: pointer;
-  background-color: transparent;
-  width:200px;
-  height: 161px;
-  perspective: 1000px;
+    cursor: pointer;
+    background-color: transparent;
+    width: 200px;
+    height: 161px;
+    perspective: 1000px;
 }
 
 .card h1 {
-  font-size: 25px;
-  border-bottom: 1px #fff solid;
-  padding-bottom: 10px;
-  margin-bottom: 10px;
+    font-size: 25px;
+    border-bottom: 1px #fff solid;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
 }
 
 .card img {
-  width: 220px;
-  height: 161px;
-  object-fit: cover;
+    width: 220px;
+    height: 161px;
+    object-fit: cover;
 }
 
 .card-inner {
-  position: relative;
-  width: 100%;
-  height: 100%;
-  transition: transform 0.8s;
-  transform-style: preserve-3d;
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transition: transform 0.8s;
+    transform-style: preserve-3d;
 }
 
 .card:hover .card-inner {
-  transform: rotateY(180deg);
+    transform: rotateY(180deg);
 }
 
 .card-front,
 .card-back {
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
 }
 
 .card-back {
-  background-color: #333;
-  color: white;
-  padding: 20px;
-  transform: rotateY(180deg);
+    background-color: #333;
+    color: white;
+    padding: 20px;
+    transform: rotateY(180deg);
 }
 
 .card li {
-  list-style: none;
-  padding-bottom: 10px;
+    list-style: none;
+    padding-bottom: 10px;
 }
 
-.links > a {
+.links>a {
     color: #ccc;
     padding: 0 25px;
     font-size: 12px;
@@ -138,23 +139,59 @@ input[type='text'] {
     top: 0;
     left: 0;
     width: 97%;
-    height: 60px; /* Set the fixed height of the footer here */
-    line-height: 60px; /* Vertically center the text there */
+    height: 60px;
+    /* Set the fixed height of the footer here */
+    line-height: 60px;
+    /* Vertically center the text there */
     /* background-color: #393f4d; */
-    margin-top:100px;
-    margin-bottom :10px;
-    margin:auto;
+    margin-top: 100px;
+    margin-bottom: 10px;
+    margin: auto;
 
-  }
+}
+
+.todo {
+
+    display: block;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    margin: auto;
+    color: black;
+    margin-bottom: 3px;
+    ;
+}
+
+.todo-bg {
+    background-color: white;
+    padding: 10px;
+    width: 375px;
+}
+
+.guesttext {
+    margin-top: 20px;
+    font-size: 14px;
+}
+
+.smaller {
+
+    font-size: 10px;
+}
+
+.todo-bg {
+    border-radius: 10px;
+}
 
 @media (max-width: 800px) {
-  .cards {
-    grid-template-columns: repeat(2, 1fr);
-  }
+    .cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
 }
 
 @media (max-width: 500px) {
-  .cards {
-    grid-template-columns: 1fr;
-  }
+    .cards {
+        grid-template-columns: 1fr;
+    }
 }
