@@ -69,7 +69,9 @@ const TodoApp = () => {
                         name="name"
                         value={name}
                         placeholder="Name"
-                        onChange={(e) => setName(e.target.value)}/>
+                        onBlur={(e) => setName(e.target.value)}
+                        
+                        />
                     <br></br>
                     <input
                         type="text"
@@ -77,7 +79,7 @@ const TodoApp = () => {
                         name="email"
                         value={email}
                         placeholder="Email"
-                        onChange={(e) => setEmail(e.target.value)}/>
+                        onBlur={(e) => setEmail(e.target.value)}/>
                     <br></br>
                     <input
                         type="text"
@@ -85,7 +87,7 @@ const TodoApp = () => {
                         name="phone"
                         value={phone}
                         placeholder="Phone"
-                        onChange={(e) => setPhone(e.target.value)}/>
+                        onBlur={(e) => setPhone(e.target.value)}/>
                     <button className="btn btn-success">Submit</button>
                 </form>
             </div>
