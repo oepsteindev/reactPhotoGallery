@@ -161,13 +161,18 @@ input[type='text'] {
     margin: auto;
     color: black;
     margin-bottom: 3px;
-    ;
+
+
+}
+.pushright {
+    text-align: right;
 }
 
 .todo-bg {
     background-color: white;
     padding: 10px;
     width: 375px;
+    
 }
 
 .guesttext {
@@ -182,6 +187,7 @@ input[type='text'] {
 
 .todo-bg {
     border-radius: 10px;
+
 }
 
 @media (max-width: 800px) {

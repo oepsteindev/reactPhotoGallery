@@ -1,5 +1,5 @@
 {
-  "name": "breaking-bad-cast",
+  "name": "Gallery",
   "version": "0.1.0",
   "private": true,
   "proxy": "https://oren-epstein.com/api/contact/reactstore",
