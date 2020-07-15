@@ -1,15 +1,17 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React from 'react';
+import axios from 'axios';
 
 class TodoAppTwo extends React.Component {
-  constructor (props) {
+  constructor(props) {
     super(props);
     this.state = {
-      fullname: "",
-      email: "",
-      phone: "",
+      fullname: '',
+      email: '',
+      phone: '',
       data: [],
-    }
+      rowid: 0,
+      isUpdate: false,
+    };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -32,47 +34,55 @@ class TodoAppTwo extends React.Component {
   handleSubmit(event) {
     event.preventDefault();
     let url = ``;
-    console.log(event.target.elements.name.value);
-    // alert("A name was submitted: " + this.state.email);
 
     let fullname = event.target.elements.name.value;
     let email = event.target.elements.email.value;
     let phone = event.target.elements.phone.value;
+    let rowid = this.state.rowid;
 
     const formData = new FormData();
-    formData.append("name", fullname);
-    formData.append("email", email);
-    formData.append("phone", phone);
-    // formData.append("id", rowid);
-    console.log(formData);
-    url = `https://oren-epstein.com/api/contact/reactstore`; //insert url
+    formData.append('name', fullname);
+    formData.append('email', email);
+    formData.append('phone', phone);
+    formData.append('id', rowid);
+
+    if (this.state.isUpdate) {
+      url = `https://oren-epstein.com/api/contact/update/${rowid}`;
+    } else {
+      url = `https://oren-epstein.com/api/contact/reactstore`; //insert url
+    }
 
     const fetchItems = async () => {
       try {
         const response = await axios.post(url, formData, {
           headers: {
-            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
+            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
           },
         });
-        console.log("👉 Returned data:", response);
-        // fetchItems();
+        this.handleGetData();
+        this.setState({
+          isUpdate: false,
+          fullname: '',
+          phone: '',
+          email: '',
+        });
+        console.log('👉 Returned data:', response);
       } catch (e) {
         console.log(`😱 Axios request failed: ${e}`);
       }
     };
 
     fetchItems();
-    this.handleGetData();
   }
 
-  handleGetData (event) {
+  handleGetData(event) {
     let url = `https://oren-epstein.com/api/contacts`;
 
     const fetchItems = async () => {
       const result = await axios
         .get(url)
         .then((response) => {
-          // handle success
+
           console.log(response.data);
           let data = response.data;
 
@@ -81,15 +91,16 @@ class TodoAppTwo extends React.Component {
           });
         })
         .catch(function (error) {
-          // handle error
+
           console.log(error);
         });
     };
+      
     fetchItems();
   }
 
-  handleEditData (event) {
-    console.log(event.target.value);
+  handleEditData(event) {
+
 
     let url = `https://oren-epstein.com/api/contact/${event.target.value}`;
 
@@ -97,84 +108,81 @@ class TodoAppTwo extends React.Component {
       const result = await axios
         .get(url)
         .then((response) => {
-          // handle success
-          console.log(response.data);
-          //   let data = response.data;
 
           this.setState({
             fullname: response.data.name,
             phone: response.data.phone,
             email: response.data.email,
+            rowid: response.data.id,
+            isUpdate: true,
           });
         })
         .catch(function (error) {
-          // handle error
+
           console.log(error);
         });
     };
     fetchItems();
   }
 
-  render () {
+  render() {
     return (
-      <div className="todo-bg">
+      <div className='todo-bg'>
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:
             <input
-              type="text"
-              name="name"
+              type='text'
+              name='name'
               value={this.state.fullname}
               onChange={this.handleChange}
-              placeholder="Name"
+              placeholder='Name'
             />
             Email:
             <input
-              type="text"
-              name="email"
+              type='text'
+              name='email'
               value={this.state.email}
               onChange={this.handleChange}
-              placeholder="Email"
+              placeholder='Email'
             />
             Phone:
             <input
-              type="text"
-              name="phone"
+              type='text'
+              name='phone'
               value={this.state.phone}
               onChange={this.handleChange}
-              placeholder="Phone"
+              placeholder='Phone'
             />
           </label>
           <input
-            type="submit"
-            value="Submit"
-            className="btn btn-primary btn-sm"
+            type='submit'
+            value='Submit'
+            className='btn btn-primary btn-sm'
           />
-          <input
-            type="button"
-            value="Get Data"
-            className="btn btn-primary btn-sm"
-            onClick={this.handleGetData}
-          />
+
           <br></br>
         </form>
         <div>
           <br></br>
-          {this.state.data.map((person, index) => (
-            <div className="todo" key={index}>
-              {person.name}
-              <button
-                className="btn btn-primary btn-sm"
-                value={person.id}
-                style={{
-                  vAlign: "middle",
-                }}
-                onClick={this.handleEditData}
-              >
-                Edit
-              </button>
-            </div>
-          ))}
+          <div className='pushright'>
+            {this.state.data.map((contact, index) => (
+              <div className='todo' key={index}>
+                {contact.name} &nbsp;
+                <button
+                  className='btn btn-primary btn-sm'
+                  value={contact.id}
+                  style={{
+                    'vertical-align': 'baseline',
+                    'display': 'table-cell',
+                  }}
+                  onClick={this.handleEditData}
+                >
+                  Edit
+                </button>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
