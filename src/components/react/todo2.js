@@ -1,13 +1,13 @@
-import React from 'react';
-import axios from 'axios';
+import React from "react";
+import axios from "axios";
 
 class TodoAppTwo extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      fullname: '',
-      email: '',
-      phone: '',
+      fullname: "",
+      email: "",
+      phone: "",
       data: [],
       rowid: 0,
       isUpdate: false,
@@ -19,11 +19,11 @@ class TodoAppTwo extends React.Component {
     this.handleEditData = this.handleEditData.bind(this);
   }
 
-  componentDidMount () {
+  componentDidMount() {
     this.handleGetData();
   }
 
-  handleChange (event) {
+  handleChange(event) {
     this.setState({
       fullname: event.target.fullname,
       email: event.target.email,
@@ -41,10 +41,10 @@ class TodoAppTwo extends React.Component {
     let rowid = this.state.rowid;
 
     const formData = new FormData();
-    formData.append('name', fullname);
-    formData.append('email', email);
-    formData.append('phone', phone);
-    formData.append('id', rowid);
+    formData.append("name", fullname);
+    formData.append("email", email);
+    formData.append("phone", phone);
+    formData.append("id", rowid);
 
     if (this.state.isUpdate) {
       url = `https://oren-epstein.com/api/contact/update/${rowid}`;
@@ -56,17 +56,17 @@ class TodoAppTwo extends React.Component {
       try {
         const response = await axios.post(url, formData, {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded; charset=UTF-8',
+            "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
           },
         });
         this.handleGetData();
         this.setState({
           isUpdate: false,
-          fullname: '',
-          phone: '',
-          email: '',
+          fullname: "",
+          phone: "",
+          email: "",
         });
-        console.log('👉 Returned data:', response);
+        console.log("👉 Returned data:", response);
       } catch (e) {
         console.log(`😱 Axios request failed: ${e}`);
       }
@@ -82,7 +82,6 @@ class TodoAppTwo extends React.Component {
       const result = await axios
         .get(url)
         .then((response) => {
-
           console.log(response.data);
           let data = response.data;
 
@@ -91,34 +90,30 @@ class TodoAppTwo extends React.Component {
           });
         })
         .catch(function (error) {
-
           console.log(error);
         });
     };
-      
+
     fetchItems();
   }
 
   handleEditData(event) {
-
-
     let url = `https://oren-epstein.com/api/contact/${event.target.value}`;
 
     const fetchItems = async () => {
       const result = await axios
         .get(url)
         .then((response) => {
-
           this.setState({
             fullname: response.data.name,
             phone: response.data.phone,
             email: response.data.email,
             rowid: response.data.id,
             isUpdate: true,
+            buttonColor: "btn-primary",
           });
         })
         .catch(function (error) {
-
           console.log(error);
         });
     };
@@ -127,54 +122,56 @@ class TodoAppTwo extends React.Component {
 
   render() {
     return (
-      <div className='todo-bg'>
+      <div className="todo-bg">
         <form onSubmit={this.handleSubmit}>
           <label>
             Name:
             <input
-              type='text'
-              name='name'
+              type="text"
+              name="name"
               value={this.state.fullname}
               onChange={this.handleChange}
-              placeholder='Name'
+              placeholder="Name"
             />
             Email:
             <input
-              type='text'
-              name='email'
+              type="text"
+              name="email"
               value={this.state.email}
               onChange={this.handleChange}
-              placeholder='Email'
+              placeholder="Email"
             />
             Phone:
             <input
-              type='text'
-              name='phone'
+              type="text"
+              name="phone"
               value={this.state.phone}
               onChange={this.handleChange}
-              placeholder='Phone'
+              placeholder="Phone"
             />
           </label>
           <input
-            type='submit'
-            value='Submit'
-            className='btn btn-primary btn-sm'
+            type="submit"
+            value={this.state.isUpdate ? "Update" : "Submit"}
+            className={
+              this.state.isUpdate ? "btn btn-sm" : "btn btn-primary btn-sm"
+            }
           />
 
           <br></br>
         </form>
         <div>
           <br></br>
-          <div className='pushright'>
+          <div className="pushright">
             {this.state.data.map((contact, index) => (
-              <div className='todo' key={index}>
+              <div className="todo" key={index}>
                 {contact.name} &nbsp;
                 <button
-                  className='btn btn-primary btn-sm'
+                  className="btn btn-primary btn-sm"
                   value={contact.id}
                   style={{
-                    'vertical-align': 'baseline',
-                    'display': 'table-cell',
+                    "vertical-align": "baseline",
+                    display: "table-cell",
                   }}
                   onClick={this.handleEditData}
                 >
