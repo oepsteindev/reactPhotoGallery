@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../App.css'
 
-const GalleryItem = ({ item }) => {
+const GalleryItem = ({ item, title }) => {
   return (
     <div className='card'>
       <div className='card-inner'>
@@ -9,21 +9,7 @@ const GalleryItem = ({ item }) => {
         <img src={"https://oren-epstein.com/oe_img/thumbs/" + item} alt='' />
         </div>
         <div className='card-back'>
-          <h1>{item.name}</h1>
-          <ul>
-            <li>
-              <strong>Actor Name:</strong> {item.portrayed}
-            </li>
-            <li>
-              <strong>Nickname:</strong> {item.nickname}
-            </li>
-            <li>
-              <strong>Birthday:</strong> {item.birthday}
-            </li>
-            <li>
-              <strong>Status:</strong> {item.status}
-            </li>
-          </ul>
+         {title}
         </div>
       </div>
     </div>

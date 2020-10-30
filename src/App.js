@@ -11,7 +11,7 @@ const App = () => {
   const [items, setItems] = useState([])
   const [isLoading, setIsLoading] = useState(true)
   const [query, setQuery] = useState('')
-  let url = `https://oren-epstein.com/thumblist`;
+  let url = `https://oren-epstein.com/all`;
 
   if (query) {
       url = `https://oren-epstein.com/full/${query}`;

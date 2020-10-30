@@ -9,7 +9,7 @@ const GalleryGrid = ({ items, isLoading }) => {
   ) : (
     <section className='cards'>
       {items.map((item) => (
-        <GalleryItem key={item.id} item={item.thumb}></GalleryItem>
+        <GalleryItem key={item.id} item={item.thumb} title={item.title}></GalleryItem>
       ))}
     </section>
   )
